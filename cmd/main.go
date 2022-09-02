@@ -67,7 +67,7 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, reply)
 	})
-	e.POST("/deposite/:amount", func(c echo.Context) error {
+	e.POST("/deposit/:amount", func(c echo.Context) error {
 		amount := c.Param("amount")
 		amt, _ := strconv.Atoi(amount)
 
@@ -80,8 +80,8 @@ func main() {
 
 		//creating auth object for above account
 		auth := getAccountAuth(client, v["accountPrivateKey"].(string))
-
-		reply, err := conn.Deposite(auth, big.NewInt(int64(amt)))
+		reply, err := conn.Deposit(auth, big.NewInt(int64(amt)))
+		//reply, err := conn.Receive(auth)
 		if err != nil {
 			return err
 		}

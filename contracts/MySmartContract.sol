@@ -6,7 +6,7 @@ contract MySmartContract {
     uint256 balance = 0;
     address public admin;
 
-    constructor() {
+    constructor() payable  {
         admin = msg.sender;
         updateBalance();
     }
@@ -24,9 +24,12 @@ contract MySmartContract {
         balance = balance - _amt;
     }
 
-    function Deposite(uint256 amt) public returns (uint256) {
-        return balance = balance + amt;
+    function Deposit(uint256 amount) payable public {
+        require(msg.value == amount);
+             updateBalance();
+  
     }
+
 
     function Balance() public view returns (uint256) {
         return balance;
