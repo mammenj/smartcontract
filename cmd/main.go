@@ -60,6 +60,14 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, reply)
 	})
+	e.GET("/cbalance", func(c echo.Context) error {
+		reply, err := conn.ContractBalance(&bind.CallOpts{})
+		if err != nil {
+			return err
+		}
+		return c.JSON(http.StatusOK, reply)
+	})
+
 	e.GET("/admin", func(c echo.Context) error {
 		reply, err := conn.Admin(&bind.CallOpts{})
 		if err != nil {
