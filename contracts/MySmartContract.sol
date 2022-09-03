@@ -20,19 +20,22 @@ contract MySmartContract {
     }
 
     function Withdrawl(uint256 _amt) public{
-        require(msg.sender == admin);
+        require(msg.sender == admin, "Only contract owner can withdraw funds");
         balance = balance - _amt;
     }
 
-    function Deposit(uint256 amount) payable public {
-        require(msg.value == amount);
+    function Deposit() payable public {
+        require(msg.value >=1 ether, "Deposit should be greater than 1 ether");
              updateBalance();
-  
     }
 
 
     function Balance() public view returns (uint256) {
         return balance;
+    }
+
+    function ContractBalance() public view returns (uint256) {
+        return address(this).balance;
     }
 
 }

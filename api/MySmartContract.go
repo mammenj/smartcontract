@@ -30,8 +30,8 @@ var (
 
 // ApiMetaData contains all meta data concerning the Api contract.
 var ApiMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"Balance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amt\",\"type\":\"uint256\"}],\"name\":\"Withdrawl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
-	Bin: "0x608060405260008055600180546001600160a01b03191633179055610022610027565b610066565b34600080828254610038919061003f565b9091555050565b8082018082111561006057634e487b7160e01b600052601160045260246000fd5b92915050565b6101d0806100756000396000f3fe6080604052600436106100435760003560e01c80630ef67887146100575780634d6ce1e51461007a578063e615c1a01461008d578063f851a440146100ad57600080fd5b36610052576100506100e5565b005b600080fd5b34801561006357600080fd5b506000546040519081526020015b60405180910390f35b61005061008836600461013f565b6100fd565b34801561009957600080fd5b506100506100a836600461013f565b610114565b3480156100b957600080fd5b506001546100cd906001600160a01b031681565b6040516001600160a01b039091168152602001610071565b346000808282546100f6919061016e565b9091555050565b80341461010957600080fd5b6101116100e5565b50565b6001546001600160a01b0316331461012b57600080fd5b806000546101399190610187565b60005550565b60006020828403121561015157600080fd5b5035919050565b634e487b7160e01b600052601160045260246000fd5b8082018082111561018157610181610158565b92915050565b818103818111156101815761018161015856fea264697066735822122062df0da9e3d7f14e8dccec4cbec464058a4d7522953366115393d67dcec3243b64736f6c63430008100033",
+	ABI: "[{\"inputs\":[],\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"Balance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ContractBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"Deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amt\",\"type\":\"uint256\"}],\"name\":\"Withdrawl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
+	Bin: "0x608060405260008055600180546001600160a01b03191633179055610022610027565b610066565b34600080828254610038919061003f565b9091555050565b8082018082111561006057634e487b7160e01b600052601160045260246000fd5b92915050565b610295806100756000396000f3fe60806040526004361061004e5760003560e01c80630ef67887146100625780633b66805914610086578063e615c1a014610099578063ed21248c146100b9578063f851a440146100c157600080fd5b3661005d5761005b6100f9565b005b600080fd5b34801561006e57600080fd5b506000545b6040519081526020015b60405180910390f35b34801561009257600080fd5b5047610073565b3480156100a557600080fd5b5061005b6100b4366004610204565b610111565b61005b610193565b3480156100cd57600080fd5b506001546100e1906001600160a01b031681565b6040516001600160a01b03909116815260200161007d565b3460008082825461010a9190610233565b9091555050565b6001546001600160a01b0316331461017f5760405162461bcd60e51b815260206004820152602660248201527f4f6e6c7920636f6e7472616374206f776e65722063616e2077697468647261776044820152652066756e647360d01b60648201526084015b60405180910390fd5b8060005461018d919061024c565b60005550565b670de0b6b3a76400003410156101fa5760405162461bcd60e51b815260206004820152602660248201527f4465706f7369742073686f756c642062652067726561746572207468616e20316044820152651032ba3432b960d11b6064820152608401610176565b6102026100f9565b565b60006020828403121561021657600080fd5b5035919050565b634e487b7160e01b600052601160045260246000fd5b808201808211156102465761024661021d565b92915050565b818103818111156102465761024661021d56fea26469706673582212206748f5705b2a9e3ed027ffa7cbe041a9b112b26acbf7ec925dd0a8708888707964736f6c63430008100033",
 }
 
 // ApiABI is the input ABI used to generate the binding from.
@@ -232,6 +232,37 @@ func (_Api *ApiCallerSession) Balance() (*big.Int, error) {
 	return _Api.Contract.Balance(&_Api.CallOpts)
 }
 
+// ContractBalance is a free data retrieval call binding the contract method 0x3b668059.
+//
+// Solidity: function ContractBalance() view returns(uint256)
+func (_Api *ApiCaller) ContractBalance(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Api.contract.Call(opts, &out, "ContractBalance")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// ContractBalance is a free data retrieval call binding the contract method 0x3b668059.
+//
+// Solidity: function ContractBalance() view returns(uint256)
+func (_Api *ApiSession) ContractBalance() (*big.Int, error) {
+	return _Api.Contract.ContractBalance(&_Api.CallOpts)
+}
+
+// ContractBalance is a free data retrieval call binding the contract method 0x3b668059.
+//
+// Solidity: function ContractBalance() view returns(uint256)
+func (_Api *ApiCallerSession) ContractBalance() (*big.Int, error) {
+	return _Api.Contract.ContractBalance(&_Api.CallOpts)
+}
+
 // Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
 // Solidity: function admin() view returns(address)
@@ -263,25 +294,25 @@ func (_Api *ApiCallerSession) Admin() (common.Address, error) {
 	return _Api.Contract.Admin(&_Api.CallOpts)
 }
 
-// Deposit is a paid mutator transaction binding the contract method 0x4d6ce1e5.
+// Deposit is a paid mutator transaction binding the contract method 0xed21248c.
 //
-// Solidity: function Deposit(uint256 amount) payable returns()
-func (_Api *ApiTransactor) Deposit(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
-	return _Api.contract.Transact(opts, "Deposit", amount)
+// Solidity: function Deposit() payable returns()
+func (_Api *ApiTransactor) Deposit(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Api.contract.Transact(opts, "Deposit")
 }
 
-// Deposit is a paid mutator transaction binding the contract method 0x4d6ce1e5.
+// Deposit is a paid mutator transaction binding the contract method 0xed21248c.
 //
-// Solidity: function Deposit(uint256 amount) payable returns()
-func (_Api *ApiSession) Deposit(amount *big.Int) (*types.Transaction, error) {
-	return _Api.Contract.Deposit(&_Api.TransactOpts, amount)
+// Solidity: function Deposit() payable returns()
+func (_Api *ApiSession) Deposit() (*types.Transaction, error) {
+	return _Api.Contract.Deposit(&_Api.TransactOpts)
 }
 
-// Deposit is a paid mutator transaction binding the contract method 0x4d6ce1e5.
+// Deposit is a paid mutator transaction binding the contract method 0xed21248c.
 //
-// Solidity: function Deposit(uint256 amount) payable returns()
-func (_Api *ApiTransactorSession) Deposit(amount *big.Int) (*types.Transaction, error) {
-	return _Api.Contract.Deposit(&_Api.TransactOpts, amount)
+// Solidity: function Deposit() payable returns()
+func (_Api *ApiTransactorSession) Deposit() (*types.Transaction, error) {
+	return _Api.Contract.Deposit(&_Api.TransactOpts)
 }
 
 // Withdrawl is a paid mutator transaction binding the contract method 0xe615c1a0.

@@ -27,7 +27,7 @@ func main() {
 	}
 
 	// create auth and transaction package for deploying smart contract
-	auth := getAccountAuth(client, "c801acad90aeed53d91027767d0df2826052c8f624bee9de90adb15f3051ea58")
+	auth := getAccountAuth(client, "c801acad90aeed53d91027767d0df2826052c8f624bee9de90adb15f3051ea58", 0)
 
 	//deploying smart contract
 	address, tx, instance, err := api.DeployApi(auth, client)
@@ -79,8 +79,8 @@ func main() {
 		}
 
 		//creating auth object for above account
-		auth := getAccountAuth(client, v["accountPrivateKey"].(string))
-		reply, err := conn.Deposit(auth, big.NewInt(int64(amt)))
+		auth := getAccountAuth(client, v["accountPrivateKey"].(string), int64(amt))
+		reply, err := conn.Deposit(auth)
 		//reply, err := conn.Receive(auth)
 		if err != nil {
 			return err
@@ -97,7 +97,7 @@ func main() {
 			panic(err)
 		}
 
-		auth := getAccountAuth(client, v["accountPrivateKey"].(string))
+		auth := getAccountAuth(client, v["accountPrivateKey"].(string),0)
 		// auth.Nonce.Add(auth.Nonce, big.NewInt(int64(1))) //it is use to create next nounce of account if it has to make another transaction
 
 		reply, err := conn.Withdrawl(auth, big.NewInt(int64(amt)))
@@ -112,7 +112,7 @@ func main() {
 }
 
 // function to create auth for any account from its private key
-func getAccountAuth(client *ethclient.Client, privateKeyAddress string) *bind.TransactOpts {
+func getAccountAuth(client *ethclient.Client, privateKeyAddress string, msg_value int64) *bind.TransactOpts {
 
 	privateKey, err := crypto.HexToECDSA(privateKeyAddress)
 	if err != nil {
@@ -141,8 +141,8 @@ func getAccountAuth(client *ethclient.Client, privateKeyAddress string) *bind.Tr
 		panic(err)
 	}
 	auth.Nonce = big.NewInt(int64(nonce))
-	auth.Value = big.NewInt(0)      // in wei
-	auth.GasLimit = uint64(3000000) // in units
+	auth.Value = big.NewInt(msg_value) // in wei
+	auth.GasLimit = uint64(3000000)    // in units
 	auth.GasPrice = big.NewInt(1000000)
 
 	return auth

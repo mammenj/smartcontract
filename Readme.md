@@ -45,14 +45,14 @@ Import `blockChain.postman_collection.json`
 2. to check admin address :- `curl --location --request GET 'http://localhost:1323/admin'`
 3. to deposite 50 abount of value from account's private key in address :- 
 
-`curl --location --request POST 'http://localhost:1323/deposite/50' \
+`curl --location --request POST 'http://localhost:1323/deposit/1000000000000000000' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "accountPrivateKey":"c801acad90aeed53d91027767d0df2826052c8f624bee9de90adb15f3051ea58"
 }'`
 
 4. to withdrawl 10 :- 
-`curl --location --request POST 'http://localhost:1323/withdrawl/50' \
+`curl --location --request POST 'http://localhost:1323/withdrawl/1000000000000000000' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "accountPrivateKey":"c801acad90aeed53d91027767d0df2826052c8f624bee9de90adb15f3051ea58"
